@@ -33,3 +33,6 @@ See as available options
 ```bash
 $ composer test
 ```
+
+### Bugs
+You found a bug? Create a issue =)

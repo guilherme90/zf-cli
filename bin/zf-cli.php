@@ -2,7 +2,7 @@
 <?php
 
 /**
- * @author Guilherme P. Nogueira <guilhermenogueira@univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 
 require_once getcwd() . '/vendor/autoload.php';
