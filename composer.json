@@ -1,0 +1,52 @@
+{
+  "name": "guilherme90/zf-cli",
+  "description": "Tool to ZF2 for create modules, controllers, actions, plugins and more",
+  "type": "library",
+  "keywords": [
+    "zf2",
+    "zf2tool",
+    "zf2cli"
+  ],
+  "authors": [
+    {
+      "name": "Guilherme Nogueira",
+      "email": "guilhermenogueira90@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ZFCli\\": "src/ZFCli"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ZFCliTest\\": "tests/ZFCliTest"
+    }
+  },
+  "require": {
+    "php": "~5.4 || ^7.0",
+    "symfony/console": "^3.3.6",
+    "zendframework/zend-code": "^2.6.3",
+    "zendframework/zend-filter": "^2.7.2"
+  },
+  "require-dev": {
+    "malukenho/docheader": "^0.1",
+    "phpunit/phpunit": "^6.3",
+    "squizlabs/php_codesniffer": "^2.9"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "bin": [
+    "bin/zf-cli"
+  ],
+  "scripts": {
+    "check": [
+      "@cs",
+      "@cs-fix",
+      "@test"
+    ],
+    "cs": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit"
+  }
+}

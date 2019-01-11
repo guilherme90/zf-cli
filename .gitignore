@@ -1,0 +1,16 @@
+nbproject
+.idea
+.buildpath
+.project
+.settings/
+.DS_Store
+composer.lock
+composer.phar
+.*.sw*
+.*.un~
+vendor/
+data/
+module/
+config/
+!tests/files/*
+tests/module
