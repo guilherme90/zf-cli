@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use ZFCli\DirectoryTrait;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 class DirectoryTraitTest extends TestCase
 {

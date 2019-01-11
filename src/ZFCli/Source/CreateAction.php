@@ -5,7 +5,7 @@ namespace ZFCli\Source;
 use ZFCli\Source\Content\FileContentTrait;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 class CreateAction implements GenerateCodeInterface
 {

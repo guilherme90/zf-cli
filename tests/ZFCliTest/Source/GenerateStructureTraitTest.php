@@ -8,7 +8,7 @@ use Zend\Code\Generator\ClassGenerator;
 use ZFCli\Source\GenerateStructureTrait;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 class GenerateStructureTraitTest extends TestCase
 {

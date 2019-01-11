@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 class CreateControllerCommand extends Command
 {

@@ -6,7 +6,7 @@ use \Zend\Code\Generator;
 use ZFCli\Filters\WordFormatTrait;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
 trait GenerateStructureTrait
 {
