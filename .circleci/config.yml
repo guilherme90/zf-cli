@@ -26,16 +26,16 @@ jobs:
     - run:
         name: Run tests
         command: ./vendor/bin/phpunit
+
     - run:
-        name: Test results
         command: |
           mkdir -p ~/phpunit
-          phpunit --log-junit /var/www/html/data/phpunit/junit.xml tests
+          phpunit --log-junit ~/phpunit/junit.xml tests
         when: always
         - store_test_results:
-          path: /var/www/html/data/phpunit
+            path: ~/phpunit
         - store_artifacts:
-            path: /var/www/html/data/phpunit
+            path: ~/phpunit
 
 workflows:
   version: 2
