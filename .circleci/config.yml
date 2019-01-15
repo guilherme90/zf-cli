@@ -20,8 +20,8 @@ jobs:
         key: v1-dependencies-{{ checksum "composer.json" }}
 
     - run:
-      name: Install composer
-      command: composer install -n --prefer-dist
+        name: Install composer
+        command: composer install -n --prefer-dist
 
     - run:
         name: Run CodeSniffer
