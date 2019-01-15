@@ -24,10 +24,6 @@ jobs:
         command: composer install -n --prefer-dist
 
     - run:
-        name: Run CodeSniffer
-        command: ./vendor/bin/phpcbf
-
-    - run:
         name: Run tests
         command: ./vendor/bin/phpunit
 
