@@ -25,12 +25,7 @@ jobs:
 
     - run:
         name: Run tests
-        command: ./vendor/bin/phpunit
-
-    - run:
-        command: |
-          mkdir -p ~/phpunit
-          phpunit --log-junit ~/phpunit/junit.xml tests
+        command: mkdir -p ~/phpunit && ./vendor/bin/phpunit
         when: always
         - store_test_results:
             path: ~/phpunit
