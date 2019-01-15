@@ -20,12 +20,12 @@ jobs:
         key: v1-dependencies-{{ checksum "composer.json" }}
 
     - run:
-        name: Run CodeSniffer
-        command: ./vendor/bin/phpcs
+      name: Install composer
+      command: composer install -n --prefer-dist
 
     - run:
-        name: Install composer
-        command: composer install -n --prefer-dist
+        name: Run CodeSniffer
+        command: ./vendor/bin/phpcs
 
     - run:
         name: Run tests
