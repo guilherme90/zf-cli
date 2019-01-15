@@ -69,16 +69,6 @@ class CreateControllerTest extends TestCase
         static::assertInternalType('int', $method->invoke($this->createController));
     }
 
-    /**
-     * @depends generateControllerClass
-     * @depends generateControllerFactoryClass
-     * @test
-     */
-    public function generateFiles()
-    {
-        static::assertNull($this->createController->generate());
-    }
-
     public function tearDown()
     {
         parent::tearDown();
