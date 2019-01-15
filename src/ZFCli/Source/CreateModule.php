@@ -8,7 +8,7 @@ use ZFCli\Source\Content\FileContentTrait;
 use Zend\Code\Generator\ValueGenerator;
 
 /**
- * @author Guilherme P. Nogueira <guilhermenogueira@univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>>
  */
 class CreateModule implements GenerateCodeInterface
 {
@@ -129,6 +129,7 @@ CONTENT;
 
         if ($this->controllerName) {
             $routeName = $this->filterControllerName($this->controllerName);
+            $action = $this->actionName ?: 'index';
 
             $contentFile = <<<FILE
 <?php
@@ -146,18 +147,18 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            {$this->controllerName}::class => {$this->controllerName}Factory::class
+            '{$this->moduleName}\\Controller\\{$this->controllerName}' => '{$this->moduleName}\\Controller\Factory\\{$this->controllerName}Factory'
         ]
     ],
     'router' => [
         'routes' => [
             '{$routeName}' => [
-                'type' => Literal::class,
+                'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => [
                     'route' => '/{$routeName}',
                     'defaults' => [
-                        'controller' => {$this->controllerName}::class,
-                        'action' => 'index'
+                        'controller' => '{$this->moduleName}\\Controller\\{$this->controllerName}',
+                        'action' => '{$action}'
                     ]
                 ],
             ]

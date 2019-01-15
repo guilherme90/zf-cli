@@ -3,14 +3,17 @@
 namespace ZFCli\Source;
 
 use \Zend\Code\Generator;
+use Zend\Code\Generator\ValueGenerator;
+use ZFCli\DirectoryTrait;
 use ZFCli\Source\Content\FileContentTrait;
 
 /**
- * @author Guilherme P. Nogueira <guilhermenogueira@univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>>
  */
 class CreateController implements GenerateCodeInterface
 {
     use FileContentTrait,
+        DirectoryTrait,
         GenerateStructureTrait;
 
     /**
@@ -29,18 +32,70 @@ class CreateController implements GenerateCodeInterface
     private $controllerName;
 
     /**
-     * @param string $modulePath
-     * @param string $moduleName
-     * @param string $controllerName
+     * @var string
+     */
+    private $actionName;
+
+    /**
+     * @var string
+     */
+    private $path;
+
+    /**
+     * @param $modulePath
+     * @param $moduleName
+     * @param $controllerName
+     * @param $actionName
      */
     public function __construct(
         $modulePath,
         $moduleName,
-        $controllerName
+        $controllerName,
+        $actionName = null
     ) {
         $this->modulePath = $modulePath;
         $this->moduleName = trim(ucfirst($moduleName));
         $this->controllerName = trim(ucfirst($controllerName));
+        $this->path = getcwd();
+
+        if ($actionName) {
+            $this->actionName = trim($actionName);
+        }
+
+    }
+
+    /**
+     * @return bool|int
+     */
+    private function addControllerNameInApplicationFile()
+    {
+        $configFile = $this->path . '/module/' . $this->moduleName . '/config/module.config.php';
+        $moduleConfig = require $configFile;
+
+        $routeName = $this->filterControllerName($this->controllerName);
+        $moduleConfig['controllers']['factories']["{$this->moduleName}\Controller\\{$this->controllerName}"] = "{$this->moduleName}\Controller\Factory\\{$this->controllerName}Factory\\{$this->controllerName}Factory";
+
+        $moduleConfig['router']['routes'][$routeName] = [
+            'type' => 'Zend\Mvc\Router\Http\Literal',
+            'options' => [
+                'route' => '/' . $routeName,
+                'defaults' => [
+                    'controller' => "{$this->moduleName}\Controller\\{$this->controllerName}",
+                    'action' => $this->actionName ?: 'index'
+                ]
+            ],
+        ];
+
+        $newContent = sprintf('%s', new ValueGenerator($moduleConfig, ValueGenerator::TYPE_ARRAY_SHORT));
+        $output = stripcslashes($newContent);
+
+        $contentFile = <<<CONTENT
+<?php
+
+return {$output};
+CONTENT;
+
+        return $this->putFileContent($configFile, $contentFile);
     }
 
     /**
@@ -49,7 +104,7 @@ class CreateController implements GenerateCodeInterface
     private function generateControllerClass()
     {
         $src = $this->generateMethodStructure(
-            'indexAction',
+            !$this->actionName ? 'index' : $this->actionName,
             $this->controllerName,
             $this->moduleName
         );
@@ -96,6 +151,7 @@ DOCBLOCK;
         $class = new Generator\ClassGenerator();
         $class->setNamespaceName($this->moduleName . '\\Controller\\Factory')
             ->setName($this->controllerName . 'Factory')
+            ->setIndentation(4)
             ->setImplementedInterfaces(['FactoryInterface'])
             ->addUse($this->moduleName . '\\Controller\\' . $this->controllerName)
             ->addUse('Zend\ServiceManager\FactoryInterface')
@@ -115,11 +171,41 @@ DOCBLOCK;
     }
 
     /**
+     * @return void
+     */
+    private function generateView()
+    {
+        if ($this->controllerName) {
+            $moduleNameView = $this->filterModuleName($this->moduleName);
+            $controllerNameView = $this->filterControllerName($this->controllerName);
+
+            $this->createDirectory('module/' . $this->moduleName
+                . '/view/' . $moduleNameView
+                . '/' . $controllerNameView);
+
+            $action = $this->actionName ?: 'index';
+
+            $contentFile = <<<FILE
+Module created! <br />
+
+<h1>Module: {$this->moduleName} | Controller: {$this->controllerName} | Action: {$action}</h1>
+FILE;
+
+            $this->putFileContent("{$this->path}/module/{$this->moduleName}/view/{$moduleNameView}/{$controllerNameView}/{$action}.phtml", $contentFile);
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function generate()
     {
         $this->generateControllerClass();
         $this->generateControllerFactoryClass();
+        $this->generateView();
+
+        if ($this->actionName) {
+            $this->addControllerNameInApplicationFile();
+        }
     }
 }

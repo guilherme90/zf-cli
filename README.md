@@ -4,7 +4,7 @@
 After a while working with other frameworks, I realized that the cli for Zend 2 is quite precarious. For this reason I am donating my time to improve this and make life easier for the developers!
 
 ### Functionalities
-- [x] Create Module
+- [x] Create module
 - [x] Create controller
 - [x] Create action
 
@@ -28,6 +28,8 @@ See as available options
 | module:help       | Displays help         |
 | controller:create | Create new Controller |
 | controller:help   | Displays help         |
+| action:create     | Create new Action |
+| action:help       | Displays help         |
 
 ### Tests
 ```bash

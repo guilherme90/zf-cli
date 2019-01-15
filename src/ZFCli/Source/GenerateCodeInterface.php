@@ -3,7 +3,7 @@
 namespace ZFCli\Source;
 
 /**
- * @author Guilherme P. Nogueira <guilhermenogueira@univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>>
  */
 interface GenerateCodeInterface
 {

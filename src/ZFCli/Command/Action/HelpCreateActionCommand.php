@@ -1,6 +1,6 @@
 <?php
 
-namespace ZFCli\Command\Controller;
+namespace ZFCli\Command\Action;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -8,17 +8,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
+ * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
  */
-class HelpCreateControllerCommand extends Command
+class HelpCreateActionCommand extends Command
 {
     /**
      * @inheritdoc
      */
     protected function configure()
     {
-        $this->setName('controller:help')
-            ->setHelp('controller:help');
+        $this->setName('action:help')
+            ->setHelp('action:help');
     }
 
     /**
@@ -27,21 +27,22 @@ class HelpCreateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('<info>CONTROLLER:HELP</info>');
+        $io->title('<info>ACTION:HELP</info>');
         $io->text('How usage:');
-        $io->text('- controller:create --module=ModuleName --controller=ControllerName');
-        $io->text('- controller:create -m ModuleName -c ControllerName');
+        $io->text('- action:create --module=ModuleName --controller=ControllerName --action=actionName');
+        $io->text('- action:create -m ModuleName -c ControllerName -a actionName');
 
         $io->newLine();
         $io->table(
             [
                 'Options',
+                'Alias',
                 'Description',
                 'REQUIRED'
             ], [
             ['--module, -m', 'Create new Module', 'YES'],
             ['--controller, -c', 'Create new Controller', 'YES'],
-            ['--action, -a', 'Create new Action in controller (without "Action")', 'NO'],
+            ['--action, -a', 'Create new Action in controller (without "Action")', 'YES'],
         ]);
     }
 }

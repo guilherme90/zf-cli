@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * @author Guilherme P. Nogueira <guilhermenogueira@univicosa.com.br>
+ * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>>
  */
 class InstructionsCommand extends Command
 {
@@ -42,8 +42,13 @@ class InstructionsCommand extends Command
                 ['module:create', 'Create new module'],
                 ['module:help', 'Display help from command'],
                 new TableSeparator(),
+
                 ['controller:create', 'Create new Controller'],
-                ['controller:help', 'Display help from command']
+                ['controller:help', 'Display help from command'],
+                new TableSeparator(),
+
+                ['action:create', 'Create new Action'],
+                ['action:help', 'Display help from command']
             ]);
     }
 }

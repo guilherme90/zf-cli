@@ -1,6 +1,6 @@
 <?php
 
-namespace ZFCli\Command\Controller;
+namespace ZFCli\Command\Action;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -8,20 +8,19 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use ZFCli\Source\CreateAction;
-use ZFCli\Source\CreateController;
 
 /**
- * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
+ * @author Guilherme Nogueira <guilhermenogueira2univicosa.com.br>
  */
-class CreateControllerCommand extends Command
+class CreateActionCommand extends Command
 {
     /**
      * @inheritdoc
      */
     protected function configure()
     {
-        $this->setName('controller:create')
-            ->setDescription('Create new controller')
+        $this->setName('action:create')
+            ->setDescription('Create new action')
             ->setHelp('module:help')
             ->addUsage('--module=ModuleName --controller=ControllerName --action=methodName')
             ->addOption(
@@ -39,7 +38,7 @@ class CreateControllerCommand extends Command
             ->addOption(
                 '--action',
                 '-a',
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 ''
             );
     }
@@ -57,14 +56,14 @@ class CreateControllerCommand extends Command
         $io->section("Checking controller \"{$controller}\" ...");
 
         try {
-            (new CreateController(
+            (new CreateAction(
                 getcwd() . '/module',
                 $module,
                 $controller,
                 $action
-            ))->generate();
+            ))->generateNewActionMethod();
 
-            $io->section("Controller: \"{$controller}\" | Action: {$action} | Module: {$module}");
+            $io->section("Action: \"{$action}\" | Controller: {$controller} | Module: {$module}");
             $io->success('Your controller created successfully !');
         } catch (\Exception $e) {
             $io->error($e->getMessage());

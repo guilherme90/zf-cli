@@ -33,21 +33,21 @@ class CreateAction implements GenerateCodeInterface
     private $actionName;
 
     /**
-     * @param $modulePath
-     * @param $moduleName
-     * @param $controllerName
-     * @param $actionName
+     * @param string $modulePath
+     * @param string $moduleName
+     * @param string $controllerName
+     * @param string $actionName
      */
     public function __construct(
-        $modulePath,
-        $moduleName,
-        $controllerName,
-        $actionName
+        $modulePath = null,
+        $moduleName = null,
+        $controllerName = null,
+        $actionName = null
     ) {
         $this->modulePath = $modulePath;
         $this->moduleName = trim(ucfirst($moduleName));
         $this->controllerName = trim(ucfirst($controllerName));
-        $this->actionName = trim($actionName);
+        $this->actionName = trim(lcfirst($actionName));
     }
 
     /**
@@ -76,5 +76,24 @@ class CreateAction implements GenerateCodeInterface
     public function generate()
     {
         $this->actionMethod();
+    }
+
+    /**
+     * @return bool|int
+     * @throws \ReflectionException
+     */
+    public function generateNewActionMethod()
+    {
+        require_once getcwd() . "/module/{$this->moduleName}/src/{$this->moduleName}/Controller/$this->controllerName.php";
+
+        $src = $this->appendClassMethod("\\{$this->moduleName}\Controller\\{$this->controllerName}", $this->actionName);
+
+        return $this->putFileContent(
+            $this->modulePath . '/'
+            . $this->moduleName . '/src/'
+            . $this->moduleName . '/Controller/'
+            . $this->controllerName . '.php',
+            $src
+        );
     }
 }
