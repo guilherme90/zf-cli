@@ -42,10 +42,10 @@ class CreateController implements GenerateCodeInterface
     private $path;
 
     /**
-     * @param $modulePath
-     * @param $moduleName
-     * @param $controllerName
-     * @param $actionName
+     * @param string $modulePath
+     * @param string $moduleName
+     * @param string $controllerName
+     * @param string $actionName
      */
     public function __construct(
         $modulePath,
@@ -73,7 +73,7 @@ class CreateController implements GenerateCodeInterface
         $moduleConfig = require $configFile;
 
         $routeName = $this->filterControllerName($this->controllerName);
-        $moduleConfig['controllers']['factories']["{$this->moduleName}\Controller\\{$this->controllerName}"] = "{$this->moduleName}\Controller\Factory\\{$this->controllerName}Factory\\{$this->controllerName}Factory";
+        $moduleConfig['controllers']['factories']["{$this->moduleName}\Controller\\{$this->controllerName}"] = "{$this->moduleName}\Controller\Factory\\{$this->controllerName}Factory";
 
         $moduleConfig['router']['routes'][$routeName] = [
             'type' => 'Zend\Mvc\Router\Http\Literal',
@@ -204,8 +204,6 @@ FILE;
         $this->generateControllerFactoryClass();
         $this->generateView();
 
-        if ($this->actionName) {
-            $this->addControllerNameInApplicationFile();
-        }
+        $this->addControllerNameInApplicationFile();
     }
 }

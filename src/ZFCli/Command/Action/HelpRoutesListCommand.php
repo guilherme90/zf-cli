@@ -7,18 +7,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+
 /**
  * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
-class HelpCreateActionCommand extends Command
+class HelpRoutesListCommand extends Command
 {
     /**
      * @inheritdoc
      */
     protected function configure()
     {
-        $this->setName('action:help')
-            ->setHelp('action:help');
+        $this->setName('route:help')
+            ->setHelp('route:help');
     }
 
     /**
@@ -27,10 +28,10 @@ class HelpCreateActionCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('<info>ACTION:HELP</info>');
+        $io->title('<info>ROUTE:HELP</info>');
         $io->text('How usage:');
-        $io->text('- action:create --module=ModuleName --controller=ControllerName --action=actionName');
-        $io->text('- action:create -m ModuleName -c ControllerName -a actionName');
+        $io->text('- route:list --module=ModuleName');
+        $io->text('- route:list -m ModuleName');
 
         $io->newLine();
         $io->table(
@@ -39,9 +40,7 @@ class HelpCreateActionCommand extends Command
                 'Description',
                 'REQUIRED'
             ], [
-            ['--module, -m', 'Create new Module', 'YES'],
-            ['--controller, -c', 'Create new Controller', 'YES'],
-            ['--action, -a', 'Create new Action in controller (without "Action")', 'YES'],
+            ['--module, -m', 'List all routes from module', 'NO']
         ]);
     }
 }

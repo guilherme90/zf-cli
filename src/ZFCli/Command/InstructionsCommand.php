@@ -48,7 +48,12 @@ class InstructionsCommand extends Command
                 new TableSeparator(),
 
                 ['action:create', 'Create new Action'],
-                ['action:help', 'Display help from command']
+                ['action:help', 'Display help from command'],
+
+                new TableSeparator(),
+
+                ['route:list', 'List all routes from all modules'],
+                ['route:help', 'Display help from command']
             ]);
     }
 }

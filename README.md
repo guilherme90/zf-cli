@@ -7,6 +7,7 @@ After a while working with other frameworks, I realized that the cli for Zend 2 
 - [x] Create module
 - [x] Create controller
 - [x] Create action
+- [ ] Routes
 
 All commands have a guide on how to use it. It is very simple, easy and fast! 
 

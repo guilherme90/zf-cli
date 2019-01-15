@@ -1,6 +1,6 @@
 <?php
 
-namespace ZFCli\Command\Action;
+namespace ZFCli\Command\Module;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,15 +10,15 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @author Guilherme Nogueira <guilhermenogueira90@gmail.com>
  */
-class HelpCreateActionCommand extends Command
+class HelpCreateModuleCommand extends Command
 {
     /**
      * @inheritdoc
      */
     protected function configure()
     {
-        $this->setName('action:help')
-            ->setHelp('action:help');
+        $this->setName('module:help')
+            ->setHelp('module:help');
     }
 
     /**
@@ -27,21 +27,20 @@ class HelpCreateActionCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('<info>ACTION:HELP</info>');
+        $io->title('<info>MODULE:HELP</info>');
         $io->text('How usage:');
-        $io->text('- action:create --module=ModuleName --controller=ControllerName --action=actionName');
-        $io->text('- action:create -m ModuleName -c ControllerName -a actionName');
+        $io->text('- module:create --module=ModuleName --controller=ControllerName --action=actionName');
+        $io->text('- module:create -m ModuleName -c ControllerName -a actionName');
 
         $io->newLine();
-        $io->table(
-            [
-                'Options',
-                'Description',
-                'REQUIRED'
-            ], [
+        $io->table([
+            'Options',
+            'Description',
+            'REQUIRED'
+        ], [
             ['--module, -m', 'Create new Module', 'YES'],
             ['--controller, -c', 'Create new Controller', 'YES'],
-            ['--action, -a', 'Create new Action in controller (without "Action")', 'YES'],
+            ['--action, -a', 'Create new Action in controller (without "Action")', 'NO'],
         ]);
     }
 }
