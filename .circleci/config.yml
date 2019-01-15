@@ -27,9 +27,9 @@ jobs:
         name: Run tests
         command: mkdir -p ~/phpunit && ./vendor/bin/phpunit
         when: always
-        - store_test_results:
+      - store_test_results:
             path: ~/phpunit
-        - store_artifacts:
+      - store_artifacts:
             path: ~/phpunit
 
 workflows:
