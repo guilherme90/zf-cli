@@ -4,13 +4,6 @@ jobs:
   test:
     docker:
     - image: circleci/php:7.1-browsers
-    branches:
-      only:
-      - master
-      - /rc-.*/
-      ignore:
-      - develop
-      - /feature-.*/
     environment:
       APP_ENV: test
     working_directory: ~/zf-cli
@@ -43,5 +36,13 @@ jobs:
 workflows:
   version: 2
   test:
+    filter
+      branches:
+        only:
+        - master
+        - /rc-.*/
+        ignore:
+        - develop
+        - /feature-.*/
     jobs:
     - test
