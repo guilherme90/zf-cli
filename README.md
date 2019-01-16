@@ -15,10 +15,14 @@ All commands have a guide on how to use it. It is very simple, easy and fast!
 ```bash
 $ ./bin/zf-cli
 ```
+### Screenshots
 
-After run this command, the output will be:
+#### List of commands
+![](https://i.imgur.com/Dc3eFV8.png)
 
-[List of commands](https://i.imgur.com/Dc3eFV8.png)
+#### Listing modules and their routes
+
+![](https://i.imgur.com/UL5V8Ml.png)
 
 ### Tests
 ```bash
