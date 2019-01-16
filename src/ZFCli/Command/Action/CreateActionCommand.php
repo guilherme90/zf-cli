@@ -22,7 +22,6 @@ class CreateActionCommand extends Command
         $this->setName('action:create')
             ->setDescription('Create new action')
             ->setHelp('module:help')
-            ->addUsage('--module=ModuleName --controller=ControllerName --action=methodName')
             ->addOption(
                 '--controller',
                 '-c',

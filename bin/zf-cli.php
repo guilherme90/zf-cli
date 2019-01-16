@@ -27,6 +27,7 @@ $app->add(new Command\Action\CreateActionCommand('action:create'));
 $app->add(new Command\Action\HelpCreateActionCommand('action:help'));
 
 // Routes
+$app->add(new Command\Action\RoutesListCommand('route:list'));
 $app->add(new Command\Action\HelpRoutesListCommand('route:help'));
 
 $app->run();

@@ -54,6 +54,7 @@ class InstructionsCommand extends Command
 
                 ['route:list', 'List all routes from all modules'],
                 ['route:help', 'Display help from command']
-            ]);
+            ]
+        );
     }
 }
