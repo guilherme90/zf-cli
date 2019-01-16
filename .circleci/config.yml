@@ -4,8 +4,6 @@ jobs:
   test:
     docker:
     - image: circleci/php:7.1-browsers
-    environment:
-      APP_ENV: test
     working_directory: ~/zf-cli
     steps:
     - checkout
@@ -30,14 +28,15 @@ jobs:
 
     - store_test_results:
         path: ~/zf-cli/data/phpunit
+
     - store_artifacts:
         path: ~/zf-cli/data/phpunit
 
 workflows:
   version: 2
-  test:
+  run-test:
     jobs:
-      - test
+      - test:
         filters:
           branches:
             only: master
