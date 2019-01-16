@@ -2,6 +2,13 @@
 version: 2
 jobs:
   test:
+    branches:
+      only:
+      - master
+      - /rc-.*/
+      ignore:
+      - develop
+      - /feature-.*/
     docker:
     - image: circleci/php:7.1-browsers
     environment:
@@ -27,6 +34,7 @@ jobs:
         name: Run tests
         command: mkdir -p ~/zf-cli/data/phpunit && ./vendor/bin/phpunit --log-junit ~/zf-cli/data/phpunit/junit.xml tests
         when: always
+
     - store_test_results:
         path: ~/zf-cli/data/phpunit
     - store_artifacts:
@@ -35,12 +43,5 @@ jobs:
 workflows:
   version: 2
   test:
-    branches:
-      only:
-      - master
-      - /rc-.*/
-      ignore:
-      - develop
-      - /feature-.*/
     jobs:
     - test
