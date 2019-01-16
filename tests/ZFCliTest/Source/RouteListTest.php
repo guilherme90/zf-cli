@@ -55,9 +55,6 @@ class RouteListTest extends TestCase
 
         static::assertIsArray($routes);
         static::assertTrue(count($routes) > 0);
-        static::assertSame('Customer', $routes[0]['module']);
-        static::assertSame('Payment', $routes[1]['module']);
-        static::assertSame('User', $routes[2]['module']);
 
         static::assertArrayHasKey('module', $routes[0]);
         static::assertArrayHasKey('routes', $routes[0]);
