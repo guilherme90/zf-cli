@@ -25,7 +25,7 @@ jobs:
 
     - run:
         name: Run tests
-        command: mkdir -p /var/www/html/data/tmp && ./vendor/bin/phpunit --log-junit /var/www/data/tmp/junit.xml tests
+        command: chown -R $USER:$USER /var/www/html && mkdir -p /var/www/html/data/tmp && ./vendor/bin/phpunit --log-junit /var/www/data/tmp/junit.xml tests
         when: always
     - store_test_results:
         path: /var/www/html/data/tmp
