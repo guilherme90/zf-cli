@@ -2,13 +2,6 @@
 version: 2
 jobs:
   test:
-    branches:
-      only:
-      - master
-      - /rc-.*/
-      ignore:
-      - develop
-      - /feature-.*/
     docker:
     - image: circleci/php:7.1-browsers
     environment:
@@ -42,5 +35,12 @@ jobs:
 workflows:
   version: 2
   test:
+    branches:
+      only:
+      - master
+      - /rc-.*/
+      ignore:
+      - develop
+      - /feature-.*/
     jobs:
     - test
