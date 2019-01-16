@@ -2,8 +2,6 @@
 
 namespace ZFCli;
 
-use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
-
 /**
  * @author Guilherme P. Nogueira <guilhermenogueira90@gmail.com>
  */
@@ -32,8 +30,8 @@ trait DirectoryTrait
     public function removeDirectoryRecursive($path)
     {
         $files = new \RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($path,
-                RecursiveDirectoryIterator::SKIP_DOTS),
+            new \RecursiveDirectoryIterator($path,
+                \RecursiveDirectoryIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::CHILD_FIRST
         );
 
