@@ -8,6 +8,8 @@ After a while working with other frameworks, I realized that the cli for Zend 2 
 - [x] Create controller
 - [x] Create action
 - [x] Routes
+- [ ] Controller plugin
+- [ ] View helpers
 
 All commands have a guide on how to use it. It is very simple, easy and fast! 
 

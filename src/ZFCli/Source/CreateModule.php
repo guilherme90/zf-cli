@@ -140,6 +140,16 @@ use \Zend\Mvc\Router\Http\Literal;
 use \Zend\Mvc\Router\Http\Segment;
 
 return [
+    'controller_plugins' => [
+        'factories' => [
+            
+        ]
+    ],
+    'view_helpers' => [
+        'factories' => [
+            
+        ]
+    ],
     'service_manager' => [
         'factories' => [
 
@@ -164,6 +174,14 @@ return [
             ]
         ]
     ],
+    'view_manager' => [
+        'strategies' => [
+            'ViewJsonStrategy'
+        ],
+        'template_path_stack' => [
+            __DIR__ . '/../view',
+        ],
+    ]
 ];
 FILE;
 
