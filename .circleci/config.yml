@@ -6,7 +6,7 @@ jobs:
     - image: circleci/php:7.1-browsers
     environment:
       APP_ENV: test
-
+    working_directory: /var/www/html
     steps:
     - checkout
     - restore_cache:
@@ -25,12 +25,12 @@ jobs:
 
     - run:
         name: Run tests
-        command: mkdir -p ~/phpunit && ./vendor/bin/phpunit
+        command: mkdir -p /var/www/html/data/tmp && ./vendor/bin/phpunit --log-junit /var/www/data/tmp/junit.xml tests
         when: always
     - store_test_results:
-        path: ~/phpunit
+        path: /var/www/html/data/tmp
     - store_artifacts:
-        path: ~/phpunit
+        path: /var/www/html/data/tmp
 
 workflows:
   version: 2
