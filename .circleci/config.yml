@@ -6,7 +6,7 @@ jobs:
     - image: circleci/php:7.1-browsers
     environment:
       APP_ENV: test
-    working_directory: /var/www/html
+    working_directory: ~/zf-cli
     steps:
     - checkout
     - restore_cache:
@@ -25,12 +25,12 @@ jobs:
 
     - run:
         name: Run tests
-        command: chown -R $USER:$USER /var/www/html && mkdir -p /var/www/html/data/tmp && ./vendor/bin/phpunit --log-junit /var/www/data/tmp/junit.xml tests
+        command: mkdir -p ~/zf-cli/data/phpunit && ./vendor/bin/phpunit --log-junit ~/zf-cli/data/phpunit/junit.xml tests
         when: always
     - store_test_results:
-        path: /var/www/html/data/tmp
+        path: ~/zf-cli/data/phpunit
     - store_artifacts:
-        path: /var/www/html/data/tmp
+        path: ~/zf-cli/data/phpunit
 
 workflows:
   version: 2

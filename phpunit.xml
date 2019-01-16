@@ -19,10 +19,10 @@
     </testsuites>
 
     <logging>
-        <log type="coverage-html" target="./data/tmp/report" lowUpperBound="65" highLowerBound="90"/>
-        <log type="coverage-clover" target="./data/tmp/coverage.xml"/>
+        <log type="coverage-html" target="./data/phpunit/report" lowUpperBound="65" highLowerBound="90"/>
+        <log type="coverage-clover" target="./data/phpunit/coverage.xml"/>
 
-        <log type="testdox-html" target="./data/tmp/testdox.html"/>
+        <log type="testdox-html" target="./data/phpunit/testdox.html"/>
     </logging>
 
     <filter>
