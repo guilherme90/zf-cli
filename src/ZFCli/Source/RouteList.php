@@ -7,9 +7,29 @@ namespace ZFCli\Source;
  */
 class RouteList
 {
-    public function listRoutes()
+    /**
+     * @param string $modulePath
+     * @return array
+     * @throws \Exception
+     */
+    public function listRoutes($modulePath)
     {
+        $modulesWithRoutes = [];
 
+        foreach (new \DirectoryIterator($modulePath) as $fileInfo) {
+            if($fileInfo->isDot()) {
+                continue;
+            }
+
+            $module = $fileInfo->getBasename();
+
+            $modulesWithRoutes[] = [
+                'module' => $module,
+                'routes' => $this->listRoutesFromModule($modulePath . '/' . $module)
+            ];
+        }
+
+        return $modulesWithRoutes;
     }
 
     /**

@@ -43,6 +43,6 @@ BODY;
         $file = new Generator\FileGenerator();
         $file->setClass($class);
 
-        static::assertInternalType('string', $file->generate());
+        static::assertIsString( $file->generate());
     }
 }

@@ -37,23 +37,24 @@ class InstructionsCommand extends Command
         $io->table(
             [
                 'Commands',
+                'Options',
                 'Description'
             ], [
-                ['module:create', 'Create new module'],
-                ['module:help', 'Display help from command'],
+                ['module:create','-m|--module, -c|--controller, -a|--action', 'Create new module'],
+                ['module:help', '', 'Display help from command'],
                 new TableSeparator(),
 
-                ['controller:create', 'Create new Controller'],
-                ['controller:help', 'Display help from command'],
+                ['controller:create', '-m|--module, -c|--controller, -a|--action', 'Create new Controller'],
+                ['controller:help', '', 'Display help from command'],
                 new TableSeparator(),
 
-                ['action:create', 'Create new Action'],
-                ['action:help', 'Display help from command'],
+                ['action:create', '-m|--module, -c|--controller, -a|--action', 'Create new Action'],
+                ['action:help', '', 'Display help from command'],
 
                 new TableSeparator(),
 
-                ['route:list', 'List all routes from all modules'],
-                ['route:help', 'Display help from command']
+                ['route:list', '-m, --module', 'List all routes from all modules'],
+                ['route:help', '', 'Display help from command']
             ]
         );
     }

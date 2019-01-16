@@ -54,7 +54,7 @@ class CreateControllerTest extends TestCase
         $method = $reflection->getMethod('generateControllerClass');
         $method->setAccessible(true);
 
-        static::assertInternalType('int', $method->invoke($this->createController));
+        static::assertIsInt($method->invoke($this->createController));
     }
 
     /**
@@ -66,7 +66,7 @@ class CreateControllerTest extends TestCase
         $method = $reflection->getMethod('generateControllerFactoryClass');
         $method->setAccessible(true);
 
-        static::assertInternalType('int', $method->invoke($this->createController));
+        static::assertIsInt($method->invoke($this->createController));
     }
 
     public function tearDown()

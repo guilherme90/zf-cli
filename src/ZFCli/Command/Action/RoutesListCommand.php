@@ -32,6 +32,7 @@ class RoutesListCommand extends Command
 
     /**
      * @inheritdoc
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -43,7 +44,40 @@ class RoutesListCommand extends Command
 
         if ($module) {
             $this->listRoutesFromModule($module, $routeList, $io);
+
+            return;
         }
+
+        $this->listRoutesFromAllModules($routeList, $io);
+
+        return;
+    }
+
+    /**
+     * @param RouteList $routeList
+     * @param SymfonyStyle $io
+     * @throws \Exception
+     */
+    public function listRoutesFromAllModules(RouteList $routeList, SymfonyStyle $io)
+    {
+        $modules = $routeList->listRoutes(getcwd() . "/module");
+
+        if (count($modules) > 0) {
+            $headers = ['Route', 'Type', 'Controller', 'Action'];
+
+            foreach ($modules as $module) {
+                $io->newLine();
+                $io->section('MODULE: ' . $module['module']);
+
+                $io->table($headers, $module['routes']);
+            }
+
+            return;
+        }
+
+        $io->text('No modules found');
+
+        return;
     }
 
     /**

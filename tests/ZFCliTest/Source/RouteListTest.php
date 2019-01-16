@@ -31,7 +31,7 @@ class RouteListTest extends TestCase
      */
     public function checkArrayReturn()
     {
-        static::assertInternalType('array', $this->routeList->listRoutesFromModule($this->modulePath));
+        static::assertIsArray($this->routeList->listRoutesFromModule($this->modulePath));
     }
 
     /**
@@ -54,5 +54,20 @@ class RouteListTest extends TestCase
     public function throwsExceptionWhenModuleNotFound()
     {
         $this->routeList->listRoutesFromModule(getcwd() . '/tests/files/module/Payment');
+    }
+
+    /**
+     * @throws \Exception
+     * @test
+     */
+    public function listRoutesFromModules()
+    {
+        $routes = $this->routeList->listRoutes(getcwd() . '/tests/files/module');
+
+        static::assertIsArray($routes);
+        static::assertTrue(count($routes) > 0);
+        static::assertSame('User', $routes[0]['module']);
+        static::assertArrayHasKey('module', $routes[0]);
+        static::assertArrayHasKey('routes', $routes[0]);
     }
 }
