@@ -15,31 +15,20 @@ class RouteListTest extends TestCase
      */
     private $routeList;
 
-    private $modulePath;
-
     public function setUp()
     {
         parent::setUp();
 
         $this->routeList = new RouteList();
-
-        $this->modulePath = getcwd() . '/tests/files/module/User';
     }
 
     /**
-     * @test
-     */
-    public function checkArrayReturn()
-    {
-        static::assertIsArray($this->routeList->listRoutesFromModule($this->modulePath));
-    }
-
-    /**
+     * @throws \Exception
      * @test
      */
     public function checkItemsFromArray()
     {
-        $routes = $this->routeList->listRoutesFromModule($this->modulePath);
+        $routes = $this->routeList->listRoutesFromModule(getcwd() . '/tests/files/module/User');
 
         static::assertNotEmpty($routes);
     }
