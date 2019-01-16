@@ -1,4 +1,4 @@
-# ZF CLI
+# ZF CLI [![CircleCI](https://circleci.com/gh/guilherme90/zf-cli/tree/master.svg?style=svg)](https://circleci.com/gh/guilherme90/zf-cli/tree/master)
 
 ### Motivation
 After a while working with other frameworks, I realized that the cli for Zend 2 is quite precarious. For this reason I am donating my time to improve this and make life easier for the developers!
@@ -29,7 +29,7 @@ See as available options
 | module:help       | Displays help         |
 | controller:create | Create new Controller |
 | controller:help   | Displays help         |
-| action:create     | Create new Action |
+| action:create     | Create new Action 	|
 | action:help       | Displays help         |
 
 ### Tests
