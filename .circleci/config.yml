@@ -34,10 +34,12 @@ jobs:
 
 workflows:
   version: 2
-  run-test:
+  build-test:
     jobs:
-      - test:
+    - test:
         filters:
           branches:
             only: master
-            ignore: develop
+            ignore:
+              - develop
+              - /feature-.*/
