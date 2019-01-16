@@ -18,19 +18,7 @@ $ ./bin/zf-cli
 
 After run this command, the output will be:
 
-**Welcome to Zend Framework CLI**
-
-See as available options
-
-
-| Commands          | Description           |
-| -------------     | -------------         |
-| module:create     | Create new Module     |
-| module:help       | Displays help         |
-| controller:create | Create new Controller |
-| controller:help   | Displays help         |
-| action:create     | Create new Action 	|
-| action:help       | Displays help         |
+[List of commands](https://i.imgur.com/Dc3eFV8.png)
 
 ### Tests
 ```bash
